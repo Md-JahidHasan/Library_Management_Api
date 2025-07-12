@@ -1,151 +1,84 @@
-📚 Library Management API
-A robust RESTful API built with Express, TypeScript, and MongoDB to manage library books and borrowing records. It supports CRUD operations, borrowing logic with business constraints, and summary reporting using MongoDB aggregation.
+# 📚 Library Management API
 
-🚀 Features
-✅ Book Management:
+A robust RESTful API using **Express**, **TypeScript**, and **MongoDB** to manage books and borrowing functionality for a library system.
 
-Create new books with validation.
+---
 
-View all books with filters and sorting.
+## 🚀 Features
 
-Retrieve individual book by ID.
+### ✅ Book Management
+- Add new books with validation
+- View all books with filters and sorting
+- Retrieve a book by ID
+- Update book details
+- Delete a book
 
-Update book information.
+### ✅ Borrowing System
+- Borrow books with quantity check
+- Reduce available copies on borrow
+- Auto-disable availability when copies reach zero
+- Borrow record saved with due date
 
-Delete books.
+### ✅ Summary & Reporting
+- Aggregated summary of borrowed books
+- Includes book title, ISBN, and total quantity borrowed
 
-✅ Borrowing Logic:
+### ✅ Advanced Mongoose Features
+- Schema validations
+- Pre-save middleware
+- Instance method for availability
+- Aggregation pipeline
+- Centralized error handling with detailed format
 
-Borrow a book only if sufficient copies are available.
+---
 
-Copies reduce upon borrowing.
+## 🧠 Technologies
 
-Book marked as unavailable when no copies are left.
+- Node.js
+- Express
+- TypeScript
+- MongoDB with Mongoose
+- Dotenv for environment configuration
 
-Borrow records are saved with due dates.
+---
 
-✅ Summary Reporting:
+## 📁 Project Structure
 
-Aggregated summary of total borrowed quantities per book.
 
-Includes book title and ISBN.
+---
 
-✅ Advanced Mongoose Usage:
+## 🔌 API Endpoints
 
-Schema validation
+### 📘 Books
 
-Pre-save middleware
+| Method | Route                 | Description             |
+|--------|----------------------|-------------------------|
+| POST   | `/api/books`         | Create a new book       |
+| GET    | `/api/books`         | Get all books           |
+| GET    | `/api/books/:id`     | Get book by ID          |
+| PUT    | `/api/books/:id`     | Update a book           |
+| DELETE | `/api/books/:id`     | Delete a book           |
 
-Instance methods
+Supports:
+- `filter`: genre
+- `sortBy`: field name (e.g. `createdAt`)
+- `sort`: `asc` or `desc`
+- `limit`: number of results
 
-Aggregation pipeline
+---
 
-✅ Error Handling:
+### 📕 Borrowing
 
-Standardized error responses
+| Method | Route           | Description                    |
+|--------|------------------|--------------------------------|
+| POST   | `/api/borrow`    | Borrow a book                  |
+| GET    | `/api/borrow`    | Borrow summary report          |
 
-Validation & CastError support
+---
 
-🛠️ Tech Stack
-Node.js
+## ❗ Error Response Format
 
-Express
-
-TypeScript
-
-MongoDB with Mongoose
-
-dotenv for environment management
-
-Postman for testing
-
-📂 Project Structure
-bash
-Copy
-Edit
-src/
-│
-├── app.ts                # Express App Config
-├── server.ts             # Server Entry Point
-├── controllers/          # Route Handlers
-│   ├── book.controller.ts
-│   └── borrow.controller.ts
-├── models/               # Mongoose Schemas
-│   ├── book.model.ts
-│   └── borrow.model.ts
-├── routes/               # API Routes
-│   ├── book.route.ts
-│   └── borrow.route.ts
-├── middleware/           # Custom Middleware
-│   └── errorHandler.ts
-🔗 API Endpoints
-📘 Book Endpoints
-Method	Route	Description
-POST	/api/books	Create a new book
-GET	/api/books	Retrieve all books
-GET	/api/books/:id	Retrieve a book by ID
-PUT	/api/books/:id	Update a book
-DELETE	/api/books/:id	Delete a book
-
-Supports Query Parameters:
-
-filter: genre (e.g., FANTASY)
-
-sortBy: field name (e.g., createdAt)
-
-sort: asc or desc
-
-limit: number of results
-
-📕 Borrow Endpoints
-Method	Route	Description
-POST	/api/borrow	Borrow a book
-GET	/api/borrow	Summary of borrowed books
-
-📦 Setup Instructions
-Clone the Repository
-
-bash
-Copy
-Edit
-git clone https://github.com/your-username/library-management-api.git
-cd library-management-api
-Install Dependencies
-
-bash
-Copy
-Edit
-npm install
-Create .env File
-
-ini
-Copy
-Edit
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/libraryDB
-Run the Server
-
-For development (with hot reload):
-
-bash
-Copy
-Edit
-npm run dev
-For production build:
-
-bash
-Copy
-Edit
-npm run build
-npm start
-Test the API
-
-Use Postman or similar tools to test endpoints.
-
-❗ Error Handling Example
-json
-Copy
-Edit
+```json
 {
   "message": "Validation failed",
   "success": false,
@@ -167,10 +100,53 @@ Edit
     }
   }
 }
-📹 Bonus (If applicable)
-🔗 Live Demo: https://your-live-link.com
 
-🎥 Demo Video: Watch on YouTube
+🛠️ Getting Started
+1️⃣ Clone the Repository
+git clone https:https://github.com/Md-JahidHasan/Library_Management_Api.git
+cd library-management-api
 
-📄 License
-This project is licensed under the MIT License.
+2️⃣ Install Dependencies
+
+npm install
+
+3️⃣ Create .env File
+
+PORT=5001
+MONGODB_URI=mongodb://localhost:27017/libraryDB
+
+4️⃣ Run the Application
+Development:
+
+npm run dev
+Production:
+
+
+npm run build
+npm start
+
+📦 Example Payloads:
+
+📘 Create Book
+{
+  "title": "The Theory of Everything",
+  "author": "Stephen Hawking",
+  "genre": "SCIENCE",
+  "isbn": "9780553380163",
+  "description": "An overview of cosmology and black holes.",
+  "copies": 5
+}
+
+📕 Borrow Book
+{
+  "book": "64ab3f9e2a4b5c6d7e8f9012",
+  "quantity": 2,
+  "dueDate": "2025-07-18T00:00:00.000Z"
+}
+📽️ Bonus (Optional)
+🔗 Live Link: coming soon
+
+🎥 Demo Video: coming soon
+
+📖 API Documentation: coming soon
+
