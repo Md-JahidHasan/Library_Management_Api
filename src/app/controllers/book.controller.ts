@@ -20,7 +20,7 @@ bookRoute.post(
   }
 );
 
-bookRoute.get('/', async (req: Request, res: Response, next: NextFunction) => {
+bookRoute.get('/create-book', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { filter, sortBy = 'createdAt', sort = 'desc', limit = 10 } = req.query;
     const query: any = {}
